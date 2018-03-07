@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    var timer = null;
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyAxO4qE19m9RlZk_bwCLjyOgcpBmAeYpuY",
@@ -19,6 +20,26 @@ $(document).ready(function(){
 
     // Load data and display when the page is loading
     trainDatabase.on("value", displayData, getError);
+
+    // Refresh data every minute
+    setInterval(udpatEveryMinute, 60000);
+    
+
+    function udpatEveryMinute(){        
+        trainDatabase.once("value", update, getError);
+    }
+
+    function update(snap){
+        // var values = snap.val();
+        snap.forEach(function(child){
+            var testTime = moment().format('X');
+            console.log(testTime);
+            console.log(child.key);
+            firebase.database().ref("/train/" + child.key).update({
+                dataAdded : testTime
+            })
+        })
+    }
 
     function displayData(snap){
         $("#train").empty();
