@@ -1,0 +1,27 @@
+.display-4 {
+    color: #050505;
+}
+p {
+    font-size: 1.0 em;
+}
+
+.card {
+    border: 1px solid #1111e6;
+}
+
+.card-header {
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control{
+    border: 1px solid #113a62;
+}
+
+#addToDatabase {
+    margin-top: 20px;
+}
